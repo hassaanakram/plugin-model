@@ -1,4 +1,4 @@
-package greeteriface
+package pluginiface
 
 type Greeter interface {
 	Greet()
