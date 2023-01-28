@@ -2,7 +2,8 @@ package plugins
 
 import (
 	"fmt"
-	iface"github.com/hassaanakram/plugin-model/pkg/plugins/pluginiface"
+	iface "github.com/hassaanakram/plugin-model/pkg/plugins/pluginiface"
+	"github.com/hassaanakram/plugin-model/pkg/plugins/registry"
 )
 
 type EnglishGreeter struct {
@@ -15,4 +16,14 @@ func (g EnglishGreeter) Greet() {
 
 func (g EnglishGreeter) GetLanguage() string {
 	return "English"
+}
+
+func (g EnglishGreeter) Register() {
+	fmt.Println("Registering english greeter...")
+	registry.PluginMap[g.GetLanguage()] = EnglishGreeter{}
+}
+
+func init() {
+	englishGreeter := EnglishGreeter{}
+	englishGreeter.Register()
 }
